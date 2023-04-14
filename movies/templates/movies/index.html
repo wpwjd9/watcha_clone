@@ -8,4 +8,14 @@
     <a href="{% url 'movies:detail' movie.pk %}"><p>{{ movie.title }}</p></a>
     <hr>
   {% endfor %}
+
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:likes' article.pk %}" method="POST">
+      {% csrf_token %}
+      {% if requset.user in article.like_users.all %}
+        <input type="submit" value="좋아요 취소">
+        <input type="submit" value="좋아요">
+      {% endif %}
+    </form>
+    {% endif %}
 {% endblock %}
