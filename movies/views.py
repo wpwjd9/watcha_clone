@@ -32,13 +32,6 @@ def detail(request, pk):
     }
     return render(request, 'movies/detail.html', context)
 
-
-def delete(request, pk):
-    movie = Movie.objects.get(pk=pk)
-    movie.delete()
-    return redirect('movies:index')
-
-
 def update(request, pk):
     movie = Movie.objects.get(pk=pk)
     if request.method == 'POST':
@@ -53,3 +46,17 @@ def update(request, pk):
         'form': form,
     }
     return render(request, 'movies/update.html', context)
+
+def delete(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    movie.delete()
+    return redirect('movies:index')
+
+def comment_create(request):
+    pass
+
+def comment_delete(request, movie_pk, comment_pk):
+    pass
+
+def likes(request):
+    pass
